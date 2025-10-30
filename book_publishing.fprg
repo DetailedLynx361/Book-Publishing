@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.0">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="Student"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2025-10-24 02:32:52 PM"/>
+        <attribute name="created" value="U3R1ZGVudDtTVjEyMDAtQTAzNDsyMDI1LTEwLTI0OzAxOjU0OjE2IFBNOzI2NDU="/>
+        <attribute name="edited" value="U3R1ZGVudDtTVjEyMDAtQTAzNDsyMDI1LTEwLTI0OzAxOjU0OjE4IFBNOzE7U3R1ZGVudDtTVjEyMDAtQTAzNDsyMDI1LTEwLTI0OzAxOjM0OjE4IFBNOzU0NTk="/>
+        <attribute name="edited" value="U3R1ZGVudDtTVjEyMDAtQTAzNDsyMDI1LTEwLTI0OzAyOjMyOjUyIFBNOzQ7Mjc1Mw=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="bookTitle" type="String" array="False" size=""/>
+            <declare name="fixedCost, salesProject" type="Real" array="False" size=""/>
+            <declare name="pageNum, rows" type="Integer" array="False" size=""/>
+            <open expression="&quot;book publishing.txt&quot;" mode="write"/>
+            <for variable="rows" start="1" end="1" direction="inc" step="1">
+                <output expression="&quot;Enter the title of the book&quot;" newline="True"/>
+                <input variable="bookTitle"/>
+                <write expression="bookTitle"/>
+                <output expression="&quot;Reading sales projection&quot;" newline="True"/>
+                <input variable="salesProject"/>
+                <write expression="salesProject"/>
+                <output expression="&quot;Enter perferred price&quot;" newline="True"/>
+                <input variable="fixedCost"/>
+                <write expression="fixedCost"/>
+                <output expression="&quot;Reading number of pages&quot;" newline="True"/>
+                <input variable="pageNum"/>
+                <write expression="pageNum"/>
+            </for>
+            <close mode="write"/>
+            <call expression="CalcBreak (salesProject, fixedCost, pageNum)"/>
+            <open expression="&quot;book publishing.txt&quot;" mode="read"/>
+            <while expression="!EOF()">
+                <read variable="bookTitle"/>
+                <output expression="bookTitle" newline="True"/>
+            </while>
+            <close mode="read"/>
+        </body>
+    </function>
+    <function name="CalcBreak" type="Real" variable="breakevenPoint">
+        <parameters>
+            <parameter name="fixedCost" type="Real" array="False"/>
+            <parameter name="salesProject" type="Real" array="False"/>
+            <parameter name="pageNum" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <declare name="breakevenPoint" type="Real" array="False" size=""/>
+            <declare name="rows" type="Integer" array="False" size=""/>
+            <output expression="&quot;Reading perferred price&quot;" newline="True"/>
+            <input variable="fixedCost"/>
+            <output expression="&quot;Reading sales projection&quot;" newline="True"/>
+            <input variable="salesProject"/>
+            <output expression="&quot;Reading number of pages&quot;" newline="True"/>
+            <input variable="pageNum"/>
+            <assign variable="breakevenPoint" expression="fixedCost + salesProject * pageNum * 1.05625 / salesProject"/>
+            <output expression="&quot;The break even point is &quot; &amp; breakevenPoint" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
