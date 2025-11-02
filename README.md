@@ -8,41 +8,37 @@
 using namespace std;
 
 // Headers
-string toString (double);
-int toInt (string);
-double toDouble (string);
+string toString(double);
+int toInt(string);
+double toDouble(string);
 double calcBreak(double fixedCost, double salesProject, int pageNum);
 
 ifstream infile;
-ofstream outfile;
 
-int main()
-{
+int main() {
     string bookTitle;
     double fixedCost, salesProject;
     int pageNum, rows;
 
-    outfile.open("book publishing.txt");
-    for (rows = 1; rows <= 1; rows++)
-    {
+    infile.open("book publishing.txt");
+    for (rows = 1; rows <= 10; rows++) {
         cout << "Enter the title of the book" << endl;
-        cin >> bookTitle;
-        outfile << bookTitle  << endl;
+        infile >> bookTitle;
+        cout << bookTitle << endl;
         cout << "Reading sales projection" << endl;
-        cin >> salesProject;
-        outfile << salesProject  << endl;
+        infile >> salesProject;
+        cout << salesProject << endl;
         cout << "Enter perferred price" << endl;
-        cin >> fixedCost;
-        outfile << fixedCost  << endl;
+        infile >> fixedCost;
+        cout << fixedCost << endl;
         cout << "Reading number of pages" << endl;
-        cin >> pageNum;
-        outfile << pageNum  << endl;
+        infile >> pageNum;
+        cout << pageNum << endl;
     }
-    outfile.close();
+    infile.close();
     calcBreak(salesProject, fixedCost, pageNum);
     infile.open("book publishing.txt");
-    while (!infile.eof())
-    {
+    while (!infile.eof()) {
         infile >> bookTitle;
         cout << bookTitle << endl;
     }
@@ -50,34 +46,33 @@ int main()
     return 0;
 }
 
-double calcBreak(double fixedCost, double salesProject, int pageNum)
-{
+double calcBreak(double fixedCost, double salesProject, int pageNum) {
     double breakevenPoint;
     int rows;
 
+    fixedCost = 5.0;
+    salesProject = 2345.67;
     cout << "Reading perferred price" << endl;
-    cin >> fixedCost;
     cout << "Reading sales projection" << endl;
-    cin >> salesProject;
     cout << "Reading number of pages" << endl;
     cin >> pageNum;
     breakevenPoint = fixedCost + salesProject * pageNum * 1.05625 / salesProject;
     cout << "The break even point is " << breakevenPoint << endl;
-    
+
     return breakevenPoint;
 }
 
 // The following implements type conversion functions.
-string toString (double value) { //int also
+string toString(double value) { //int also
     stringstream temp;
     temp << value;
     return temp.str();
 }
 
-int toInt (string text) {
+int toInt(string text) {
     return atoi(text.c_str());
 }
 
-double toDouble (string text) {
+double toDouble(string text) {
     return atof(text.c_str());
 }
